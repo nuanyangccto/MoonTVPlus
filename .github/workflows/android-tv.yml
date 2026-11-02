@@ -63,16 +63,16 @@ jobs:
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
         with:
           # 默认会装已下架的 'tools' 包，导致 sdkmanager 报 "Failed to find package 'tools'"
           # 这里只装 platform-tools，去掉过时的 tools
@@ -142,7 +142,7 @@ jobs:
           ls -lh /tmp/android-tv-apks
 
       - name: Upload APK artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: moontvplus-android-tv-${{ inputs.version_name }}-${{ matrix.label }}
           path: /tmp/android-tv-apks/*.apk
