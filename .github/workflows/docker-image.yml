@@ -26,7 +26,7 @@ jobs:
       matrix:
         include:
           - platform: linux/amd64
-            os: ubuntu-latest
+            os: ubuntu-24.04
           - platform: linux/arm64
             os: ubuntu-24.04-arm
     runs-on: ${{ matrix.os }}
@@ -92,7 +92,7 @@ jobs:
           retention-days: 1
 
   merge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - build
     steps:
@@ -133,7 +133,7 @@ jobs:
             $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/moontvplus@sha256:%s ' *)
 
   cleanup-refresh:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - merge
     if: always()
